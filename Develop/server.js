@@ -36,12 +36,14 @@ app.get('/api/notes', (req, res) =>
 
 
 app.post('/api/notes', (req, res) => {
-    const { noteTitle, note,} = req.body;
-    if (noteTitle && note) {
+    console.log(req.body, 'BODY');
+    const { title, text,} = req.body;
+
+    try{
         const newNote = {
-            noteTitle,
-            note,
-            note_id: uniqid(),
+            title,
+            text,
+            id: uniqid(),
         }
         
         readAndAppend(newNote, './db/db.json');
@@ -53,9 +55,29 @@ app.post('/api/notes', (req, res) => {
         };
         console.log(response);
         res.status(201).json(response);
-    } else {
-        res.status(500).json('Error in posting review');
+    } catch(err) {
+        console.log('ERROR', err)
     }
+
+    // if (noteTitle && noteBody) {
+    //     const newNote = {
+    //         noteTitle,
+    //         noteBody,
+    //         note_id: uniqid(),
+    //     }
+        
+    //     readAndAppend(newNote, './db/db.json');
+        
+        
+    //     const response = {
+    //         status: 'success',
+    //         body: newNote,
+    //     };
+    //     console.log(response);
+    //     res.status(201).json(response);
+    // } else {
+    //     //res.status(500).json('Error in posting review');
+    // }
 });
 
 app.listen(PORT, () => {

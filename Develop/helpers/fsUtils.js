@@ -30,5 +30,5 @@ const readAndAppend = (content, file) => {
         }
     });
 };
-
+//Disclaimer
 module.exports = { readFromFile, writeToFile, readAndAppend };
