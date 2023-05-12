@@ -27,9 +27,6 @@ app.get('/notes', (req, res) => {
 
 
 //allows to get the data from the notes
-
-
-
 app.get('/api/notes', (req, res) =>
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
@@ -59,25 +56,6 @@ app.post('/api/notes', (req, res) => {
         console.log('ERROR', err)
     }
 
-    // if (noteTitle && noteBody) {
-    //     const newNote = {
-    //         noteTitle,
-    //         noteBody,
-    //         note_id: uniqid(),
-    //     }
-        
-    //     readAndAppend(newNote, './db/db.json');
-        
-        
-    //     const response = {
-    //         status: 'success',
-    //         body: newNote,
-    //     };
-    //     console.log(response);
-    //     res.status(201).json(response);
-    // } else {
-    //     //res.status(500).json('Error in posting review');
-    // }
 });
 
 app.listen(PORT, () => {
